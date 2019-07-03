@@ -28,10 +28,42 @@ struct ContentView : View {
     
     var body: some View {
         NavigationView {
-            Text("Hello world")
-            .navigationBarTitle(Text("Tech Posts!"))
+            
+            ScrollView {
+                HStack {
+                    
+                    ForEach(boxs.identified(by: \.id)) { box in
+                        
+                        BoxView(Box: box)
+                        
+                    }
+                    
+                }
+            }.navigationBarTitle(Text("Landmark"))
+           
+            
         }
     }
+}
+
+struct BoxView: View {
+    
+    let Box:Box
+    
+    var body: some View {
+        
+        VStack {
+            Image(Box.imageUrl)
+                .resizable()
+                .frame(width:80 , height:80 )
+                .cornerRadius(12)
+            Text(Box.title)
+                .font(.subheadline)
+                .fontWeight(.bold)
+        }
+        
+    }
+    
 }
 
 

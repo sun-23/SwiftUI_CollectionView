@@ -28,20 +28,18 @@ struct ContentView : View {
     
     var body: some View {
         NavigationView {
-            
-            ScrollView {
-                HStack {
-                    
-                    ForEach(boxs.identified(by: \.id)) { box in
+                ScrollView {
+                    HStack {
                         
-                        BoxView(Box: box)
+                        ForEach(boxs.identified(by: \.id)) { box in
+                            
+                            BoxView(Box: box)
+                            
+                        }
                         
-                    }
+                    }.padding()
                     
-                }
             }.navigationBarTitle(Text("Landmark"))
-           
-            
         }
     }
 }
@@ -52,13 +50,15 @@ struct BoxView: View {
     
     var body: some View {
         
-        VStack {
+        ZStack {
             Image(Box.imageUrl)
                 .resizable()
-                .frame(width:80 , height:80 )
+                .frame(width:200 , height:200 )
                 .cornerRadius(12)
             Text(Box.title)
-                .font(.subheadline)
+                .baselineOffset(-80)
+                .color(Color.white)
+                .font(.headline)
                 .fontWeight(.bold)
         }
         

@@ -28,18 +28,20 @@ struct ContentView : View {
     
     var body: some View {
         NavigationView {
-                ScrollView {
-                    HStack {
+            ScrollView(.horizontal){
+                HStack {
                         
-                        ForEach(boxs.identified(by: \.id)) { box in
+                        ForEach(boxs, id: \.id) { box in
                             
                             BoxView(Box: box)
                             
                         }
                         
                     }.padding()
+                    .position(x:CGFloat(530),y: CGFloat(100))
                     
             }.navigationBarTitle(Text("Landmark"))
+            .padding(CGFloat(0))
         }
     }
 }
@@ -57,7 +59,7 @@ struct BoxView: View {
                 .cornerRadius(12)
             Text(Box.title)
                 .baselineOffset(-80)
-                .color(Color.white)
+                .foregroundColor(Color.white)
                 .font(.headline)
                 .fontWeight(.bold)
         }
